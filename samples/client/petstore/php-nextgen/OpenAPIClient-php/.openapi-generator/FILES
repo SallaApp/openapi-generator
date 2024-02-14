@@ -71,6 +71,7 @@ src/Api/PetApi.php
 src/Api/StoreApi.php
 src/Api/UserApi.php
 src/ApiException.php
+src/ClientBuilder.php
 src/Configuration.php
 src/HeaderSelector.php
 src/Model/AdditionalPropertiesClass.php
