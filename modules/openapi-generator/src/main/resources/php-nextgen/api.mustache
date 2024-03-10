@@ -38,7 +38,7 @@ use {{invokerPackage}}\ObjectSerializer;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-{{#operations}}class {{classname}}
+{{#operations}}class {{classname}} implements {{interfaceNamePrefix}}{{classname}}{{interfaceNameSuffix}}
 {
     /**
      * @var ClientInterface
@@ -60,15 +60,6 @@ use {{invokerPackage}}\ObjectSerializer;
      */
     protected int $hostIndex;
 
-    /** @var string[] $contentTypes **/
-    public const contentTypes = [{{#operation}}
-        '{{{operationId}}}' => [{{#consumes}}
-            '{{{mediaType}}}',{{/consumes}}
-        {{^consumes}}
-            'application/json',
-{{/consumes}}        ],{{/operation}}
-    ];
-
     /**
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
@@ -88,9 +79,7 @@ use {{invokerPackage}}\ObjectSerializer;
     }
 
     /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
+     * {@inheritdoc}
      */
     public function setHostIndex(int $hostIndex): void
     {
@@ -98,9 +87,7 @@ use {{invokerPackage}}\ObjectSerializer;
     }
 
     /**
-     * Get the host index
-     *
-     * @return int Host index
+     * {@inheritdoc}
      */
     public function getHostIndex(): int
     {
@@ -108,7 +95,7 @@ use {{invokerPackage}}\ObjectSerializer;
     }
 
     /**
-     * @return Configuration
+     * {@inheritdoc}
      */
     public function getConfig(): Configuration
     {
@@ -117,57 +104,7 @@ use {{invokerPackage}}\ObjectSerializer;
 
 {{#operation}}
     /**
-     * Operation {{{operationId}}}
-{{#summary}}
-     *
-     * {{.}}
-{{/summary}}
-     *
-{{#description}}
-     * {{.}}
-     *
-{{/description}}
-{{#vendorExtensions.x-group-parameters}}
-     * Note: the input parameter is an associative array with the keys listed as the parameter name below
-     *
-{{/vendorExtensions.x-group-parameters}}
-{{#servers}}
-{{#-first}}
-     * This operation contains host(s) defined in the OpenAPI spec. Use 'hostIndex' to select the host.
-     * if needed, use the 'variables' parameter to pass variables to the host.
-{{/-first}}
-     * URL: {{{url}}}
-{{#variables}}
-{{#-first}}
-     *  Variables:
-{{/-first}}
-     *    - {{{name}}}: {{{description}}}{{^description}} No description provided{{/description}}{{#enumValues}}
-{{#-first}}
-     *      Allowed values:
-{{/-first}}
-     *        - {{{.}}}{{/enumValues}}
-{{/variables}}
-{{#-last}}
-     *
-{{/-last}}
-{{/servers}}
-{{#allParams}}
-     * @param  {{{dataType}}}{{^required}}|null{{/required}} ${{paramName}}{{#description}} {{.}}{{/description}}{{^description}} {{paramName}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
-{{/allParams}}
-{{#servers}}
-{{#-first}}
-     * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
-     * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
-{{/-first}}
-{{/servers}}
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['{{{operationId}}}'] to see the possible values for this operation
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return {{#returnType}}{{#responses}}{{#dataType}}{{^-first}}|{{/-first}}{{/dataType}}{{{dataType}}}{{/responses}}{{/returnType}}{{^returnType}}void{{/returnType}}
-    {{#isDeprecated}}
-     * @deprecated
-    {{/isDeprecated}}
+     * {@inheritdoc}
      */
     public function {{operationId}}(
     {{^vendorExtensions.x-group-parameters}}
@@ -192,57 +129,7 @@ use {{invokerPackage}}\ObjectSerializer;
     }
 
     /**
-     * Operation {{{operationId}}}WithHttpInfo
-{{#summary}}
-     *
-     * {{.}}
-{{/summary}}
-     *
-{{#description}}
-     * {{.}}
-     *
-{{/description}}
-{{#vendorExtensions.x-group-parameters}}
-     * Note: the input parameter is an associative array with the keys listed as the parameter name below
-     *
-{{/vendorExtensions.x-group-parameters}}
-{{#servers}}
-{{#-first}}
-     * This operation contains host(s) defined in the OpenAPI spec. Use 'hostIndex' to select the host.
-     * if needed, use the 'variables' parameter to pass variables to the host.
-{{/-first}}
-     * URL: {{{url}}}
-{{#variables}}
-{{#-first}}
-     *  Variables:
-{{/-first}}
-     *    - {{{name}}}: {{{description}}}{{^description}} No description provided{{/description}}{{#enumValues}}
-{{#-first}}
-     *      Allowed values:
-{{/-first}}
-     *        - {{{.}}}{{/enumValues}}
-{{/variables}}
-{{#-last}}
-     *
-{{/-last}}
-{{/servers}}
-{{#allParams}}
-     * @param  {{{dataType}}}{{^required}}|null{{/required}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
-{{/allParams}}
-{{#servers}}
-{{#-first}}
-     * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
-     * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
-{{/-first}}
-{{/servers}}
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['{{{operationId}}}'] to see the possible values for this operation
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return array of {{#returnType}}{{#responses}}{{#dataType}}{{^-first}}|{{/-first}}{{/dataType}}{{{dataType}}}{{/responses}}{{/returnType}}{{^returnType}}null{{/returnType}}, HTTP status code, HTTP response headers (array of strings)
-    {{#isDeprecated}}
-     * @deprecated
-    {{/isDeprecated}}
+     * {@inheritdoc}
      */
     public function {{operationId}}WithHttpInfo(
     {{^vendorExtensions.x-group-parameters}}
@@ -391,56 +278,7 @@ use {{invokerPackage}}\ObjectSerializer;
     }
 
     /**
-     * Operation {{{operationId}}}Async
-     *
-{{#summary}}
-     * {{.}}
-     *
-{{/summary}}
-{{#description}}
-     * {{.}}
-     *
-{{/description}}
-{{#vendorExtensions.x-group-parameters}}
-     * Note: the input parameter is an associative array with the keys listed as the parameter name below
-     *
-{{/vendorExtensions.x-group-parameters}}
-{{#servers}}
-{{#-first}}
-     * This operation contains host(s) defined in the OpenAPI spec. Use 'hostIndex' to select the host.
-     * if needed, use the 'variables' parameter to pass variables to the host.
-{{/-first}}
-     * URL: {{{url}}}
-{{#variables}}
-{{#-first}}
-     *  Variables:
-{{/-first}}
-     *    - {{{name}}}: {{{description}}}{{^description}} No description provided{{/description}}{{#enumValues}}
-{{#-first}}
-     *      Allowed values:
-{{/-first}}
-     *        - {{{.}}}{{/enumValues}}
-{{/variables}}
-{{#-last}}
-     *
-{{/-last}}
-{{/servers}}
-{{#allParams}}
-     * @param  {{{dataType}}}{{^required}}|null{{/required}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
-{{/allParams}}
-{{#servers}}
-{{#-first}}
-     * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
-     * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
-{{/-first}}
-{{/servers}}
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['{{{operationId}}}'] to see the possible values for this operation
-     *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
-    {{#isDeprecated}}
-     * @deprecated
-    {{/isDeprecated}}
+     * {@inheritdoc}
      */
     public function {{operationId}}Async(
     {{^vendorExtensions.x-group-parameters}}
@@ -469,56 +307,7 @@ use {{invokerPackage}}\ObjectSerializer;
     }
 
     /**
-     * Operation {{{operationId}}}AsyncWithHttpInfo
-     *
-{{#summary}}
-     * {{.}}
-     *
-{{/summary}}
-{{#description}}
-     * {{.}}
-     *
-{{/description}}
-{{#vendorExtensions.x-group-parameters}}
-     * Note: the input parameter is an associative array with the keys listed as the parameter name below
-     *
-{{/vendorExtensions.x-group-parameters}}
-{{#servers}}
-{{#-first}}
-     * This operation contains host(s) defined in the OpenAPI spec. Use 'hostIndex' to select the host.
-     * if needed, use the 'variables' parameter to pass variables to the host.
-{{/-first}}
-     * URL: {{{url}}}
-{{#variables}}
-{{#-first}}
-     *  Variables:
-{{/-first}}
-     *    - {{{name}}}: {{{description}}}{{^description}} No description provided{{/description}}{{#enumValues}}
-{{#-first}}
-     *      Allowed values:
-{{/-first}}
-     *        - {{{.}}}{{/enumValues}}
-{{/variables}}
-{{#-last}}
-     *
-{{/-last}}
-{{/servers}}
-{{#allParams}}
-     * @param  {{{dataType}}}{{^required}}|null{{/required}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
-{{/allParams}}
-{{#servers}}
-{{#-first}}
-     * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
-     * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
-{{/-first}}
-{{/servers}}
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['{{{operationId}}}'] to see the possible values for this operation
-     *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
-    {{#isDeprecated}}
-     * @deprecated
-    {{/isDeprecated}}
+     * {@inheritdoc}
      */
     public function {{operationId}}AsyncWithHttpInfo(
     {{^vendorExtensions.x-group-parameters}}
@@ -583,48 +372,7 @@ use {{invokerPackage}}\ObjectSerializer;
     }
 
     /**
-     * Create request for operation '{{{operationId}}}'
-     *
-{{#vendorExtensions.x-group-parameters}}
-     * Note: the input parameter is an associative array with the keys listed as the parameter name below
-     *
-{{/vendorExtensions.x-group-parameters}}
-{{#servers}}
-{{#-first}}
-    * This operation contains host(s) defined in the OpenAPI spec. Use 'hostIndex' to select the host.
-    * if needed, use the 'variables' parameter to pass variables to the host.
-{{/-first}}
-     * URL: {{{url}}}
-{{#variables}}
-{{#-first}}
-     *  Variables:
-{{/-first}}
-    *    - {{{name}}}: {{{description}}}{{^description}} No description provided{{/description}}{{#enumValues}}
-{{#-first}}
-     *      Allowed values:
-{{/-first}}
-     *        - {{{.}}}{{/enumValues}}
-{{/variables}}
-{{#-last}}
-     *
-{{/-last}}
-{{/servers}}
-{{#allParams}}
-     * @param  {{{dataType}}}{{^required}}|null{{/required}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
-{{/allParams}}
-{{#servers}}
-{{#-first}}
-     * @param  null|int $hostIndex Host index. Defaults to null. If null, then the library will use $this->hostIndex instead
-     * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
-{{/-first}}
-{{/servers}}
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['{{{operationId}}}'] to see the possible values for this operation
-     *
-     * @throws InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-    {{#isDeprecated}}
-     * @deprecated
-    {{/isDeprecated}}
+     * {@inheritdoc}
      */
     public function {{operationId}}Request(
     {{^vendorExtensions.x-group-parameters}}

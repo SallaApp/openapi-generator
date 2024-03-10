@@ -48,6 +48,8 @@ public class PhpNextgenClientCodegen extends AbstractPhpCodegen {
         setSrcBasePath("src");
         setTestBasePath("tests");
 
+        apiTemplateFiles.put("api_interface.mustache", "Interface.php");
+
         // mark as beta so far
         this.generatorMetadata = GeneratorMetadata.newBuilder(generatorMetadata)
                 .stability(Stability.BETA).build();
