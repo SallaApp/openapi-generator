@@ -69,80 +69,6 @@ class FakeApi implements FakeApiInterface
      */
     protected int $hostIndex;
 
-<<<<<<< HEAD
-=======
-    /** @var string[] $contentTypes **/
-    public const contentTypes = [
-        'fakeBigDecimalMap' => [
-            'application/json',
-        ],
-        'fakeHealthGet' => [
-            'application/json',
-        ],
-        'fakeHttpSignatureTest' => [
-            'application/json',
-            'application/xml',
-        ],
-        'fakeOuterBooleanSerialize' => [
-            'application/json',
-        ],
-        'fakeOuterCompositeSerialize' => [
-            'application/json',
-        ],
-        'fakeOuterNumberSerialize' => [
-            'application/json',
-        ],
-        'fakeOuterStringSerialize' => [
-            'application/json',
-        ],
-        'fakePropertyEnumIntegerSerialize' => [
-            'application/json',
-        ],
-        'testAdditionalPropertiesReference' => [
-            'application/json',
-        ],
-        'testBodyWithBinary' => [
-            'image/png',
-        ],
-        'testBodyWithFileSchema' => [
-            'application/json',
-        ],
-        'testBodyWithQueryParams' => [
-            'application/json',
-        ],
-        'testClientModel' => [
-            'application/json',
-        ],
-        'testEndpointParameters' => [
-            'application/x-www-form-urlencoded',
-        ],
-        'testEnumParameters' => [
-            'application/x-www-form-urlencoded',
-        ],
-        'testGroupParameters' => [
-            'application/json',
-        ],
-        'testInlineAdditionalProperties' => [
-            'application/json',
-        ],
-        'testInlineFreeformAdditionalProperties' => [
-            'application/json',
-        ],
-        'testJsonFormData' => [
-            'application/x-www-form-urlencoded',
-        ],
-        'testNullable' => [
-            'application/json',
-        ],
-        'testQueryParameterCollectionFormat' => [
-            'application/json',
-        ],
-        'testStringMapReference' => [
-            'application/json',
-        ],
-    ];
-
->>>>>>> upstream/master
     /**
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
@@ -5548,16 +5474,7 @@ class FakeApi implements FakeApiInterface
     }
 
     /**
-     * Operation testStringMapReference
-     *
-     * test referenced string map
-     *
-     * @param  array<string,string> $request_body request body (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['testStringMapReference'] to see the possible values for this operation
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return void
+     * {@inheritdoc}
      */
     public function testStringMapReference(
         array $request_body,
@@ -5568,16 +5485,7 @@ class FakeApi implements FakeApiInterface
     }
 
     /**
-     * Operation testStringMapReferenceWithHttpInfo
-     *
-     * test referenced string map
-     *
-     * @param  array<string,string> $request_body request body (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['testStringMapReference'] to see the possible values for this operation
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * {@inheritdoc}
      */
     public function testStringMapReferenceWithHttpInfo(
         array $request_body,
@@ -5631,15 +5539,7 @@ class FakeApi implements FakeApiInterface
     }
 
     /**
-     * Operation testStringMapReferenceAsync
-     *
-     * test referenced string map
-     *
-     * @param  array<string,string> $request_body request body (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['testStringMapReference'] to see the possible values for this operation
-     *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * {@inheritdoc}
      */
     public function testStringMapReferenceAsync(
         array $request_body,
@@ -5655,15 +5555,7 @@ class FakeApi implements FakeApiInterface
     }
 
     /**
-     * Operation testStringMapReferenceAsyncWithHttpInfo
-     *
-     * test referenced string map
-     *
-     * @param  array<string,string> $request_body request body (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['testStringMapReference'] to see the possible values for this operation
-     *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * {@inheritdoc}
      */
     public function testStringMapReferenceAsyncWithHttpInfo(
         $request_body,
@@ -5697,13 +5589,7 @@ class FakeApi implements FakeApiInterface
     }
 
     /**
-     * Create request for operation 'testStringMapReference'
-     *
-     * @param  array<string,string> $request_body request body (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['testStringMapReference'] to see the possible values for this operation
-     *
-     * @throws InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * {@inheritdoc}
      */
     public function testStringMapReferenceRequest(
         $request_body,

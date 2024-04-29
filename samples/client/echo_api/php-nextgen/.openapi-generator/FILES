@@ -38,6 +38,8 @@ src/Api/QueryApi.php
 src/Api/QueryApiInterface.php
 src/ApiException.php
 src/ClientBuilder.php
+src/Collection.php
+src/CollectionInterface.php
 src/Configuration.php
 src/HeaderSelector.php
 src/Model/Bird.php
@@ -53,4 +55,8 @@ src/Model/Tag.php
 src/Model/TestFormObjectMultipartRequestMarker.php
 src/Model/TestQueryStyleDeepObjectExplodeTrueObjectAllOfQueryObjectParameter.php
 src/Model/TestQueryStyleFormExplodeTrueArrayStringQueryObjectParameter.php
+src/NotFoundException.php
 src/ObjectSerializer.php
+src/PaginationInterface.php
+src/UnauthorizedException.php
+src/ValidationFailedException.php

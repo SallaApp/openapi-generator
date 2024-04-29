@@ -79,6 +79,8 @@ src/Api/UserApi.php
 src/Api/UserApiInterface.php
 src/ApiException.php
 src/ClientBuilder.php
+src/Collection.php
+src/CollectionInterface.php
 src/Configuration.php
 src/HeaderSelector.php
 src/Model/AdditionalPropertiesClass.php
@@ -132,4 +134,8 @@ src/Model/SpecialModelName.php
 src/Model/Tag.php
 src/Model/TestInlineFreeformAdditionalPropertiesRequest.php
 src/Model/User.php
+src/NotFoundException.php
 src/ObjectSerializer.php
+src/PaginationInterface.php
+src/UnauthorizedException.php
+src/ValidationFailedException.php

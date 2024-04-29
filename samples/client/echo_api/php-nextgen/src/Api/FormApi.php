@@ -120,7 +120,8 @@ class FormApi implements FormApiInterface
         ?bool $boolean_form = null,
         ?string $string_form = null,
         string $contentType = self::contentTypes['testFormIntegerBooleanString'][0]
-    ): string {
+    ): string
+    {
         list($response) = $this->testFormIntegerBooleanStringWithHttpInfo($integer_form, $boolean_form, $string_form, $contentType);
         return $response;
     }
@@ -133,7 +134,8 @@ class FormApi implements FormApiInterface
         ?bool $boolean_form = null,
         ?string $string_form = null,
         string $contentType = self::contentTypes['testFormIntegerBooleanString'][0]
-    ): array {
+    ): array
+    {
         $request = $this->testFormIntegerBooleanStringRequest($integer_form, $boolean_form, $string_form, $contentType);
 
         try {
@@ -228,6 +230,7 @@ class FormApi implements FormApiInterface
                 $response->getStatusCode(),
                 $response->getHeaders()
             ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -251,7 +254,8 @@ class FormApi implements FormApiInterface
         ?bool $boolean_form = null,
         ?string $string_form = null,
         string $contentType = self::contentTypes['testFormIntegerBooleanString'][0]
-    ): PromiseInterface {
+    ): PromiseInterface
+    {
         return $this->testFormIntegerBooleanStringAsyncWithHttpInfo($integer_form, $boolean_form, $string_form, $contentType)
             ->then(
                 function ($response) {
@@ -268,7 +272,8 @@ class FormApi implements FormApiInterface
         $boolean_form = null,
         $string_form = null,
         string $contentType = self::contentTypes['testFormIntegerBooleanString'][0]
-    ): PromiseInterface {
+    ): PromiseInterface
+    {
         $returnType = 'string';
         $request = $this->testFormIntegerBooleanStringRequest($integer_form, $boolean_form, $string_form, $contentType);
 
@@ -316,7 +321,13 @@ class FormApi implements FormApiInterface
         $boolean_form = null,
         $string_form = null,
         string $contentType = self::contentTypes['testFormIntegerBooleanString'][0]
-    ): Request {
+    ): Request
+    {
+
+
+
+
+
         $resourcePath = '/form/integer/boolean/string';
         $formParams = [];
         $queryParams = [];
@@ -361,6 +372,285 @@ class FormApi implements FormApiInterface
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function testFormObjectMultipart(
+        \OpenAPI\Client\Model\TestFormObjectMultipartRequestMarker $marker,
+        string $contentType = self::contentTypes['testFormObjectMultipart'][0]
+    ): string
+    {
+        list($response) = $this->testFormObjectMultipartWithHttpInfo($marker, $contentType);
+        return $response;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function testFormObjectMultipartWithHttpInfo(
+        \OpenAPI\Client\Model\TestFormObjectMultipartRequestMarker $marker,
+        string $contentType = self::contentTypes['testFormObjectMultipart'][0]
+    ): array
+    {
+        $request = $this->testFormObjectMultipartRequest($marker, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('string' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('string' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'string', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'string';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function testFormObjectMultipartAsync(
+        \OpenAPI\Client\Model\TestFormObjectMultipartRequestMarker $marker,
+        string $contentType = self::contentTypes['testFormObjectMultipart'][0]
+    ): PromiseInterface
+    {
+        return $this->testFormObjectMultipartAsyncWithHttpInfo($marker, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function testFormObjectMultipartAsyncWithHttpInfo(
+        $marker,
+        string $contentType = self::contentTypes['testFormObjectMultipart'][0]
+    ): PromiseInterface
+    {
+        $returnType = 'string';
+        $request = $this->testFormObjectMultipartRequest($marker, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function testFormObjectMultipartRequest(
+        $marker,
+        string $contentType = self::contentTypes['testFormObjectMultipart'][0]
+    ): Request
+    {
+
+        // verify the required parameter 'marker' is set
+        if ($marker === null || (is_array($marker) && count($marker) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $marker when calling testFormObjectMultipart'
+            );
+        }
+
+
+        $resourcePath = '/form/object/multipart';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+        // form params
+        if ($marker !== null) {
+            $formParams['marker'] = ObjectSerializer::toFormValue($marker);
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
@@ -403,7 +693,8 @@ class FormApi implements FormApiInterface
         ?int $id = null,
         ?string $name = null,
         string $contentType = self::contentTypes['testFormOneof'][0]
-    ): string {
+    ): string
+    {
         list($response) = $this->testFormOneofWithHttpInfo($form1, $form2, $form3, $form4, $id, $name, $contentType);
         return $response;
     }
@@ -419,7 +710,8 @@ class FormApi implements FormApiInterface
         ?int $id = null,
         ?string $name = null,
         string $contentType = self::contentTypes['testFormOneof'][0]
-    ): array {
+    ): array
+    {
         $request = $this->testFormOneofRequest($form1, $form2, $form3, $form4, $id, $name, $contentType);
 
         try {
@@ -514,6 +806,7 @@ class FormApi implements FormApiInterface
                 $response->getStatusCode(),
                 $response->getHeaders()
             ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -540,7 +833,8 @@ class FormApi implements FormApiInterface
         ?int $id = null,
         ?string $name = null,
         string $contentType = self::contentTypes['testFormOneof'][0]
-    ): PromiseInterface {
+    ): PromiseInterface
+    {
         return $this->testFormOneofAsyncWithHttpInfo($form1, $form2, $form3, $form4, $id, $name, $contentType)
             ->then(
                 function ($response) {
@@ -560,7 +854,8 @@ class FormApi implements FormApiInterface
         $id = null,
         $name = null,
         string $contentType = self::contentTypes['testFormOneof'][0]
-    ): PromiseInterface {
+    ): PromiseInterface
+    {
         $returnType = 'string';
         $request = $this->testFormOneofRequest($form1, $form2, $form3, $form4, $id, $name, $contentType);
 
@@ -611,7 +906,16 @@ class FormApi implements FormApiInterface
         $id = null,
         $name = null,
         string $contentType = self::contentTypes['testFormOneof'][0]
-    ): Request {
+    ): Request
+    {
+
+
+
+
+
+
+
+
         $resourcePath = '/form/oneof';
         $formParams = [];
         $queryParams = [];
@@ -668,6 +972,7 @@ class FormApi implements FormApiInterface
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
