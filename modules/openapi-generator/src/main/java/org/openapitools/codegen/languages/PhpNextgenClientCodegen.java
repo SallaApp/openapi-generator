@@ -128,6 +128,16 @@ public class PhpNextgenClientCodegen extends AbstractPhpCodegen {
         supportingFiles.add(new SupportingFile(".phplint.mustache", "", ".phplint.yml"));
         supportingFiles.add(new SupportingFile("git_push.sh.mustache", "", "git_push.sh"));
         supportingFiles.add(new SupportingFile("ClientBuilder.mustache", toSrcPath(invokerPackage, srcBasePath), "ClientBuilder.php"));
+
+        // add collection feature classes
+        supportingFiles.add(new SupportingFile("Collection.mustache", toSrcPath(invokerPackage, srcBasePath), "Collection.php"));
+        supportingFiles.add(new SupportingFile("CollectionInterface.mustache", toSrcPath(invokerPackage, srcBasePath), "CollectionInterface.php"));
+        supportingFiles.add(new SupportingFile("PaginationInterface.mustache", toSrcPath(invokerPackage, srcBasePath), "PaginationInterface.php"));
+
+        // add exclusive exceptions
+        supportingFiles.add(new SupportingFile("NotFoundException.mustache", toSrcPath(invokerPackage, srcBasePath), "NotFoundException.php"));
+        supportingFiles.add(new SupportingFile("UnauthorizedException.mustache", toSrcPath(invokerPackage, srcBasePath), "UnauthorizedException.php"));
+        supportingFiles.add(new SupportingFile("ValidationFailedException.mustache", toSrcPath(invokerPackage, srcBasePath), "ValidationFailedException.php"));
     }
 
     @Override
