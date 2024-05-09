@@ -115,11 +115,15 @@ public class PhpNextgenClientCodegen extends AbstractPhpCodegen {
     public void processOpts() {
         super.processOpts();
 
-        supportingFiles.add(new SupportingFile("ApiException.mustache", toSrcPath(invokerPackage, srcBasePath), "ApiException.php"));
-        supportingFiles.add(new SupportingFile("Configuration.mustache", toSrcPath(invokerPackage, srcBasePath), "Configuration.php"));
-        supportingFiles.add(new SupportingFile("ObjectSerializer.mustache", toSrcPath(invokerPackage, srcBasePath), "ObjectSerializer.php"));
-        supportingFiles.add(new SupportingFile("ModelInterface.mustache", toSrcPath(modelPackage, srcBasePath), "ModelInterface.php"));
-        supportingFiles.add(new SupportingFile("HeaderSelector.mustache", toSrcPath(invokerPackage, srcBasePath), "HeaderSelector.php"));
+        String corePackage = invokerPackage + "/Core";
+        String paginationPackage = invokerPackage + "/Pagination";
+        String exceptionPackage = invokerPackage + "/Exception";
+
+        supportingFiles.add(new SupportingFile("ApiException.mustache", toSrcPath(exceptionPackage, srcBasePath), "ApiException.php"));
+        supportingFiles.add(new SupportingFile("Configuration.mustache", toSrcPath(corePackage, srcBasePath), "Configuration.php"));
+        supportingFiles.add(new SupportingFile("ObjectSerializer.mustache", toSrcPath(corePackage, srcBasePath), "ObjectSerializer.php"));
+        supportingFiles.add(new SupportingFile("ModelInterface.mustache", toSrcPath(corePackage, srcBasePath), "ModelInterface.php"));
+        supportingFiles.add(new SupportingFile("HeaderSelector.mustache", toSrcPath(corePackage, srcBasePath), "HeaderSelector.php"));
         supportingFiles.add(new SupportingFile("composer.mustache", "", "composer.json"));
         supportingFiles.add(new SupportingFile("README.mustache", "", "README.md"));
         supportingFiles.add(new SupportingFile("phpunit.xml.mustache", "", "phpunit.xml.dist"));
@@ -127,17 +131,17 @@ public class PhpNextgenClientCodegen extends AbstractPhpCodegen {
         supportingFiles.add(new SupportingFile(".php-cs-fixer.dist.php", "", ".php-cs-fixer.dist.php"));
         supportingFiles.add(new SupportingFile(".phplint.mustache", "", ".phplint.yml"));
         supportingFiles.add(new SupportingFile("git_push.sh.mustache", "", "git_push.sh"));
-        supportingFiles.add(new SupportingFile("ClientBuilder.mustache", toSrcPath(invokerPackage, srcBasePath), "ClientBuilder.php"));
+        supportingFiles.add(new SupportingFile("ClientBuilder.mustache", toSrcPath(corePackage, srcBasePath), "ClientBuilder.php"));
 
         // add collection feature classes
-        supportingFiles.add(new SupportingFile("Collection.mustache", toSrcPath(invokerPackage, srcBasePath), "Collection.php"));
-        supportingFiles.add(new SupportingFile("CollectionInterface.mustache", toSrcPath(invokerPackage, srcBasePath), "CollectionInterface.php"));
-        supportingFiles.add(new SupportingFile("PaginationInterface.mustache", toSrcPath(invokerPackage, srcBasePath), "PaginationInterface.php"));
+        supportingFiles.add(new SupportingFile("Collection.mustache", toSrcPath(paginationPackage, srcBasePath), "Collection.php"));
+        supportingFiles.add(new SupportingFile("CollectionInterface.mustache", toSrcPath(paginationPackage, srcBasePath), "CollectionInterface.php"));
+        supportingFiles.add(new SupportingFile("PaginationInterface.mustache", toSrcPath(paginationPackage, srcBasePath), "PaginationInterface.php"));
 
         // add exclusive exceptions
-        supportingFiles.add(new SupportingFile("NotFoundException.mustache", toSrcPath(invokerPackage, srcBasePath), "NotFoundException.php"));
-        supportingFiles.add(new SupportingFile("UnauthorizedException.mustache", toSrcPath(invokerPackage, srcBasePath), "UnauthorizedException.php"));
-        supportingFiles.add(new SupportingFile("ValidationFailedException.mustache", toSrcPath(invokerPackage, srcBasePath), "ValidationFailedException.php"));
+        supportingFiles.add(new SupportingFile("NotFoundException.mustache", toSrcPath(exceptionPackage, srcBasePath), "NotFoundException.php"));
+        supportingFiles.add(new SupportingFile("UnauthorizedException.mustache", toSrcPath(exceptionPackage, srcBasePath), "UnauthorizedException.php"));
+        supportingFiles.add(new SupportingFile("ValidationFailedException.mustache", toSrcPath(exceptionPackage, srcBasePath), "ValidationFailedException.php"));
     }
 
     @Override
