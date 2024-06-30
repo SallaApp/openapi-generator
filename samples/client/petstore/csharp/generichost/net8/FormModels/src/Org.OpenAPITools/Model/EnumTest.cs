@@ -201,7 +201,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -346,7 +346,7 @@ namespace Org.OpenAPITools.Model
         {
             writer.WriteStartObject();
 
-            WriteProperties(ref writer, enumTest, jsonSerializerOptions);
+            WriteProperties(writer, enumTest, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
@@ -357,7 +357,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="enumTest"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(ref Utf8JsonWriter writer, EnumTest enumTest, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, EnumTest enumTest, JsonSerializerOptions jsonSerializerOptions)
         {
             var enumStringRequiredRawValue = EnumTestEnumStringValueConverter.ToJsonValue(enumTest.EnumStringRequired);
             writer.WriteString("enum_string_required", enumStringRequiredRawValue);

@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   HealthCheckResult.JSON_PROPERTY_NULLABLE_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.6.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0-SNAPSHOT")
 public class HealthCheckResult {
   public static final String JSON_PROPERTY_NULLABLE_MESSAGE = "NullableMessage";
   private JsonNullable<String> nullableMessage = JsonNullable.<String>undefined();
@@ -42,8 +42,8 @@ public class HealthCheckResult {
   }
 
   /**
-  * Constructor with all args parameters
-  */
+   * Constructor with all args parameters
+   */
   public HealthCheckResult(@JsonProperty(JSON_PROPERTY_NULLABLE_MESSAGE) String nullableMessage) {
     this.nullableMessage = nullableMessage == null ? JsonNullable.<String>undefined() : JsonNullable.of(nullableMessage);
   }
@@ -54,10 +54,10 @@ public class HealthCheckResult {
     return this;
   }
 
-   /**
+  /**
    * Get nullableMessage
    * @return nullableMessage
-  **/
+   */
   @javax.annotation.Nullable
   @JsonIgnore
 
@@ -128,6 +128,64 @@ public class HealthCheckResult {
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+  public static class Builder {
+
+    private HealthCheckResult instance;
+
+    public Builder() {
+      this(new HealthCheckResult());
+    }
+
+    protected Builder(HealthCheckResult instance) {
+      this.instance = instance;
+    }
+
+    public HealthCheckResult.Builder nullableMessage(String nullableMessage) {
+      this.instance.nullableMessage = JsonNullable.<String>of(nullableMessage);
+      return this;
+    }
+    public HealthCheckResult.Builder nullableMessage(JsonNullable<String> nullableMessage) {
+      this.instance.nullableMessage = nullableMessage;
+      return this;
+    }
+
+
+    /**
+    * returns a built HealthCheckResult instance.
+    *
+    * The builder is not reusable.
+    */
+    public HealthCheckResult build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field.
+  */
+  public static HealthCheckResult.Builder builder() {
+    return new HealthCheckResult.Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public HealthCheckResult.Builder toBuilder() {
+    return new HealthCheckResult.Builder()
+      .nullableMessage(getNullableMessage());
+  }
+
 
 }
 

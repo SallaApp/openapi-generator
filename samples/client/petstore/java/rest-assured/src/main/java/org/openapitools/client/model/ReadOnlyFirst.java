@@ -28,7 +28,7 @@ import org.hibernate.validator.constraints.*;
 /**
  * ReadOnlyFirst
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.6.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0-SNAPSHOT")
 public class ReadOnlyFirst {
   public static final String SERIALIZED_NAME_BAR = "bar";
   @SerializedName(SERIALIZED_NAME_BAR)
@@ -41,8 +41,8 @@ public class ReadOnlyFirst {
   public ReadOnlyFirst() {
   }
   /**
-  * Constructor with only readonly parameters
-  */
+   * Constructor with only readonly parameters
+   */
   
   public ReadOnlyFirst(
      String bar
@@ -51,10 +51,10 @@ public class ReadOnlyFirst {
     this.bar = bar;
   }
 
-   /**
+  /**
    * Get bar
    * @return bar
-  **/
+   */
   @javax.annotation.Nullable
 
 
@@ -70,10 +70,10 @@ public class ReadOnlyFirst {
     return this;
   }
 
-   /**
+  /**
    * Get baz
    * @return baz
-  **/
+   */
   @javax.annotation.Nullable
 
 

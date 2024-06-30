@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ModelApiResponse.JSON_PROPERTY_MESSAGE
 })
 @JsonTypeName("ApiResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.6.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0-SNAPSHOT")
 public class ModelApiResponse {
   public static final String JSON_PROPERTY_CODE = "code";
   private Integer code;
@@ -47,8 +47,8 @@ public class ModelApiResponse {
   }
 
   /**
-  * Constructor with all args parameters
-  */
+   * Constructor with all args parameters
+   */
   public ModelApiResponse(@JsonProperty(JSON_PROPERTY_CODE) Integer code, @JsonProperty(JSON_PROPERTY_TYPE) String type, @JsonProperty(JSON_PROPERTY_MESSAGE) String message) {
     this.code = code;
     this.type = type;
@@ -61,10 +61,10 @@ public class ModelApiResponse {
     return this;
   }
 
-   /**
+  /**
    * Get code
    * @return code
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -86,10 +86,10 @@ public class ModelApiResponse {
     return this;
   }
 
-   /**
+  /**
    * Get type
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -111,10 +111,10 @@ public class ModelApiResponse {
     return this;
   }
 
-   /**
+  /**
    * Get message
    * @return message
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_MESSAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -170,6 +170,70 @@ public class ModelApiResponse {
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+  public static class Builder {
+
+    private ModelApiResponse instance;
+
+    public Builder() {
+      this(new ModelApiResponse());
+    }
+
+    protected Builder(ModelApiResponse instance) {
+      this.instance = instance;
+    }
+
+    public ModelApiResponse.Builder code(Integer code) {
+      this.instance.code = code;
+      return this;
+    }
+    public ModelApiResponse.Builder type(String type) {
+      this.instance.type = type;
+      return this;
+    }
+    public ModelApiResponse.Builder message(String message) {
+      this.instance.message = message;
+      return this;
+    }
+
+
+    /**
+    * returns a built ModelApiResponse instance.
+    *
+    * The builder is not reusable.
+    */
+    public ModelApiResponse build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field.
+  */
+  public static ModelApiResponse.Builder builder() {
+    return new ModelApiResponse.Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public ModelApiResponse.Builder toBuilder() {
+    return new ModelApiResponse.Builder()
+      .code(getCode())
+      .type(getType())
+      .message(getMessage());
+  }
+
 
 }
 
